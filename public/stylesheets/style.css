@@ -1,0 +1,28 @@
+body {
+  background: #17279c;
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ccc;
+}
+
+a {
+  color: #00B7FF;
+}
+
+a.active {
+  color: #222;
+  cursor: none;
+  text-decoration: none;
+}
+
+a.article-anchor {
+  text-decoration: none;
+}
+
+a.article-anchor:hover {
+  color: #005500;
+}
+
+footer {
+  color: #333;
+}
