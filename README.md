@@ -1,8 +1,8 @@
 ## Implementation of a blog-like personal website with admin page
 ### using NodeJs 8.x, Express 4.x, EJS template, Vue.js 2.x, Sqlite3
 
-###   [demo site](https://japanwonderland.herokuapp.com)
-###   [demo site admin page](https://japanwonderland.herokuapp.com/admin)
+###   [demo site](https://jpwonderland.herokuapp.com)
+###   [demo site admin page](https://jpwonderland.herokuapp.com/admin)
 
 ### use SQLiteDatabaseBrowser to manage database
     [sqlite tutorial 1](http://www.sqlitetutorial.net/)
