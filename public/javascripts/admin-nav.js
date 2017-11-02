@@ -23,7 +23,7 @@ var componentAdminNav = Vue.component('admin-nav', {
                         v-on:click="showPage(3)">
                         <a href="#">問與答管理</a>
                     </li>
-                    <li v-bind:class="{active: active == 3}"
+                    <li v-bind:class=""
                         v-on:click="showPage(3)">
                         <a href="/admin/logout">登出</a>
                     </li>

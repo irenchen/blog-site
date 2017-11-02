@@ -8,8 +8,9 @@ const adminpass = process.env.adminpass || '123'
 router.get('/', function(req, res, next) {
   if(req.cookies.user === 'admin') {
     res.render('admin')
-  }
-  res.redirect('/admin/login')
+  } else {
+    res.redirect('/admin/login')
+  }  
 })
 
 router.get('/login', function(req, res, next) {
@@ -27,9 +28,9 @@ router.post('/login', function(req, res, next) {
        res.cookie('user', 'admin', {
          expires: new Date(new Date().getTime() + 86400000)
        })
-       res.render('admin')
+       res.redirect('/admin')
   } else {
-    res.redirect('/admin/login')
+    res.render('adminlogin')
   }
 });
 

@@ -8,9 +8,7 @@ var admin = new Vue({
     },
     methods:{
         changePage: function(index) {
-            console.log('trigger changePage event')
-            console.log('current page = ', index)
-            this.currentPage = index    
+            this.currentPage = index     
         },
     },
     computed: {

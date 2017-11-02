@@ -24,7 +24,7 @@ var componentMyArticleNav = Vue.component('my-article-nav', {
                 <div v-else></div>
             </div>
             <div class="clearfix"></div>
-            <div>totalPages : {{ totalPages }}, currentPage : {{ currentPage }}</div>
+            <div class="hidden">totalPages : {{ totalPages }}, currentPage : {{ currentPage }}</div>
         </div>
     `,
     props: ['current', 'articles', 'initialPage'],

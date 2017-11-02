@@ -7,10 +7,10 @@ var site = new Vue({
         currentPage: 1,
     },
     methods:{
-        changePage: function(index) {
+        showPage: function(index) {
             // console.log('trigger changePage event')
             this.currentPage = index
-            this.$emit('reset-page-1')       
+            this.$emit('reset-page-1')     
         },
         showHomePage: function() {
             this.currentPage = 1

@@ -11,8 +11,8 @@
   <body>
     <div id="site">
         <my-header></my-header>
-        <my-nav v-on:change-page="changePage" v-on:show-home-page="showHomePage"></my-nav>
-        <my-page-1 v-if="currentPage == 1"></my-page-1>
+        <my-nav v-on:show-page="showPage" v-on:show-home-page="showHomePage"></my-nav>
+        <my-page-1 v-show="currentPage == 1"></my-page-1>
         <my-page-2 v-if="currentPage == 2"></my-page-2>
         <my-page-3 v-if="currentPage == 3"></my-page-3>
         <my-footer></my-footer>
@@ -22,6 +22,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
     
     <script src="/javascripts/my-article.js"></script>    
@@ -34,6 +35,5 @@
     <script src="/javascripts/my-nav.js"></script>
     <script src="/javascripts/site.js"></script>
     
-
   </body>
 </html>
