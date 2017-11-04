@@ -43,7 +43,7 @@ var componentAdminNav = Vue.component('admin-nav', {
             // console.log('show page ', i)
             this.active = i
             // bus.$emit('change-page', i)
-            this.$emit('change-page', i)
+            this.$emit('show-page', i)
         }
     }
 })

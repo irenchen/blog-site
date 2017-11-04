@@ -10,8 +10,12 @@
   </head>
   <body>
     <div id="admin">
-        <admin-nav v-on:change-page="changePage"></admin-nav>
+        <admin-nav v-on:show-page="showPage"></admin-nav>
         <admin-page-1 v-if="currentPage == 1"></admin-page-1>
+        <admin-page-2 v-if="currentPage == 2"></admin-page-2>
+        <admin-page-3 v-if="currentPage == 3"></admin-page-3>
+
+        <admin-footer></admin-footer>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -22,7 +26,10 @@
 
     <script src="/javascripts/admin-article-edit.js"></script>
     <script src="/javascripts/admin-page-1.js"></script>
+    <script src="/javascripts/admin-page-2.js"></script>
+    <script src="/javascripts/admin-page-3.js"></script>
     <script src="/javascripts/admin-nav.js"></script>
+    <script src="/javascripts/admin-footer.js"></script>
     <script src="/javascripts/admin.js"></script>
     
 

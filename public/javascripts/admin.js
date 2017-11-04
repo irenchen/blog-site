@@ -7,7 +7,7 @@ var admin = new Vue({
         currentPage: 1,
     },
     methods:{
-        changePage: function(index) {
+        showPage: function(index) {
             this.currentPage = index     
         },
     },

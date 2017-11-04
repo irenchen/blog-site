@@ -1,11 +1,10 @@
 var componentMyNav = Vue.component('my-nav', {
     template: `
-        <nav class="navbar navbar-default ">
-            <div class="container-fluid">
-                
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">                
                 <div class="navbar-header">          
                     <a class="navbar-brand" 
-                       href=""
+                       href="#"
                        @click="$emit('show-home-page')">                        
                         <span><img :src="logo" width="20">日本文化交流小站</span>
                     </a>
@@ -28,7 +27,7 @@ var componentMyNav = Vue.component('my-nav', {
     data: function() {
         return {
             active: 1,
-            logo: 'images/logo.png'
+            logo: '/images/logo.png'
         }
     },
     methods: {

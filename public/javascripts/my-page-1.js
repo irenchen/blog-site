@@ -20,7 +20,7 @@ var componentMyPage1 = Vue.component('my-page-1', {
                 </div>
             </div>
             <my-article 
-                v-show="articleMode" 
+                v-if="articleMode" 
                 v-bind:article="currentArticle">
             </my-article>
             <div class="text-center" v-show="!articleMode">

@@ -1,6 +1,6 @@
-var componentMyFooter = Vue.component('my-footer', {
+var componentAdminFooter = Vue.component('admin-footer', {
     template: `
-        <footer class="well" style="margin-top:20px;margin-bottom:0px;">
+        <footer class="well" style="margin-top:20px;margin-bottom: 0;">
             <div class="container row">
                 <div class="col-sm-4 text-center">
                     <img :src="logo" width="30px">
@@ -10,11 +10,9 @@ var componentMyFooter = Vue.component('my-footer', {
                 </div>
                 <div class="col-sm-4 text-right">
                     <h5><a :href="'mailto:' + contact">{{ contact }}</a></h5>
-                </div>
-            
+                </div>                
             </div>
         </footer>
-
     `,
     props: [],
     data: function() {

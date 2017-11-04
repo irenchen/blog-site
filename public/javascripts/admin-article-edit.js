@@ -23,10 +23,16 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                             </div>
                             <div class="form-group">
                                 <label for="body">文章內容</label>
-                                <textarea class="form-control" rows="20"
+                                <textarea class="form-control" rows="10"
                                     id="body" name="body"
                                     v-model="newArticle.body">
                                 </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="youtube">內嵌youtube影片</label>
+                                <input type="text" class="form-control"
+                                    id="youtube" name="youtube"
+                                    v-model="newArticle.youtube">
                             </div>
                             <div class="form-group">
                                 <label for="image1">內嵌圖片</label>
@@ -63,10 +69,16 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                             </div>
                             <div class="form-group">
                                 <label for="body">文章內容</label>
-                                <textarea class="form-control" rows="20"
+                                <textarea class="form-control" rows="10"
                                     id="body" name="body" 
                                     v-model="newArticle.body">
                                 </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="youtube">修改內嵌youtube影片</label>
+                                <input type="text" class="form-control"
+                                    id="youtube" name="youtube"
+                                    v-model="newArticle.youtube">
                             </div>
                             <div class="form-group">
                                 <label for="image2">更換內嵌圖片
@@ -114,6 +126,7 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
             formData.append('author', this.newArticle.author)
             formData.append('title', this.newArticle.title)
             formData.append('body', this.newArticle.body)
+            formData.append('youtube', this.newArticle.youtube)
             if(this.mode === 'create') {
                 formData.append('image', document.querySelector('#image1').files[0])
                 axios.post('/db/article', formData)
@@ -123,10 +136,11 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                     })
                     .catch(console.log)
             } else {
+                formData.append('orgImage', this.newArticle.image)
                 formData.append('image', document.querySelector('#image2').files[0])
                 axios.put('/db/article/' + this.newArticle.id, formData)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         this.$emit('update-article', res.data)
                     })
                     .catch(console.log)

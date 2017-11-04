@@ -2,55 +2,75 @@ var componentAdminPage1 = Vue.component('admin-page-1', {
     template: `
         <div>
             <admin-article-edit v-on:update-article="renderArticles"></admin-article-edit>
-            <div class="text-right">
-                <button class="btn btn-default"
-                        data-toggle="modal" 
-                        data-target="#myModal"
-                        v-on:click="createArticle">
-                    發布新文章
-                </button>
-                <button class="btn btn-default"
-                        @click="deleteAll">
-                    刪除全部文章
-                </button>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="form-group" style="display:inline-block;">
+                        <label for="start">起始日期</label>
+                        <input type="date" id="start" name="start"
+                            v-model="startDate">
+                    </div>
+                    <div class="form-group" style="display:inline-block;">
+                        <label for="stop">結束日期</label>
+                        <input type="date" id="stop" name="stop"
+                            v-model="stopDate">
+                    </div>
+                    <button class="btn btn-default" id="dateRangeBtn"
+                            @click="handleDateRange">設定時間區間</button>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <button class="btn btn-default" style="margin:5px;"
+                            data-toggle="modal" 
+                            data-target="#myModal"
+                            v-on:click="createArticle">
+                        發布新文章
+                    </button>
+                    <button class="btn btn-default" style="margin:5px;"
+                            @click="deleteAll">
+                        刪除全部文章
+                    </button>
+                </div>
             </div>
-            
-            <div class="table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>title</th>
-                        <th>body</th>
-                        <th>author</th>
-                        <th>date</th>
-                        <th>image</th>
-                        <th>edit</th>
-                        <th>delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-if="articles.length > 0" v-for="(article, index) in articles">
-                        <td>{{ article.id }}</td>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.body.slice(0, 30) + '...' }}</td>
-                        <td>{{ article.author }}</td>
-                        <td>{{ article.created }}</td>
-                        <td>{{ article.image }}</td>
-                        <td>
-                            <button class="btn btn-link" 
-                                    data-toggle="modal" 
-                                    data-target="#myModal"
-                                    @click="editArticle(index)">edit
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-link"
-                                    @click="deleteArticle(index)">
-                                    delete
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
+            <div style="display:inline-block;margin-left: 45%;">文章總數 : {{ this.articles.length }}</div>
+            <div class="bg-primary" style="padding: 0 10px;">                
+                <table class="table table-responsive bg-primary">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>title</th>
+                            <th>body</th>
+                            <th>author</th>
+                            <th>date</th>
+                            <th>video</th>
+                            <th>image</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-if="articles.length > 0" v-for="(article, index) in articles">
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.body.slice(0, 10) + '...' }}</td>
+                            <td>{{ article.author }}</td>
+                            <td>{{ article.created }}</td>
+                            <td>{{ article.youtube && article.youtube.slice(0, 10) + '...' }}</td>
+                            <td>{{ article.image.slice(0, 10) + '...' }}</td>
+                            <td>
+                                <button class="btn btn-link" style="color:#ccc"
+                                        data-toggle="modal" 
+                                        data-target="#myModal"
+                                        @click="editArticle(index)">edit
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-link" style="color:#555"
+                                        @click="deleteArticle(index)">
+                                        delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     `,
@@ -61,6 +81,8 @@ var componentAdminPage1 = Vue.component('admin-page-1', {
             currentArticle: {},
             currentIndex: 1,
             editMode: '',
+            startDate: '',
+            stopDate: '',
         }
     },
     methods: {
@@ -102,6 +124,20 @@ var componentAdminPage1 = Vue.component('admin-page-1', {
                 .catch(console.log)
             } else {
 
+            }
+        },
+        handleDateRange: function() {
+            if( this.startDate && this.stopDate ) {
+                axios.get(`/db/article/range/${this.startDate}/${this.stopDate}`)
+                    .then(res => {
+                        this.renderArticles(res.data)
+                    })
+                    .catch(console.log)
+            } else {
+                $('#dateRangeBtn').text('請先設定日期').css('color', 'red')
+                setTimeout(() => {
+                    $('#dateRangeBtn').text('設定時間區間').css('color', 'black')
+                }, 2000)
             }
         }
     },
