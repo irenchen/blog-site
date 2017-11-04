@@ -9,12 +9,13 @@
 ####    [sqlite tutorial 2](https://www.tutorialspoint.com/sqlite/)
 ####    [node sqlite3 api](https://github.com/mapbox/node-sqlite3/wiki/API)
 
-### install & run
+### install & run & test
 #### cd blog-site  
 #### npm install
 #### npm run db_init
 #### npm run db_fake_data
 #### npm run dev
+#### npm test
 
 ### Todos:
 #### 1.handle blog article rendering
