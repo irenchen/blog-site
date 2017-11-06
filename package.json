@@ -7,7 +7,7 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "db_init": "node ./db/init",
-    "db_drop": "node ./db/drop",
+    "db_drop": "node ./db/drop_articles && node ./db/drop_messages",
     "db_fake_data": "node ./db/crud"
   },
   "dependencies": {

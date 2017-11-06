@@ -43,7 +43,7 @@ router.post('/article', upload.any(), (req, res, next) => {
     author: req.body.author,
     title: req.body.title,
     youtube: req.body.youtube,
-    body: req.body.body.replace('\r\n', '<br>'),
+    body: req.body.body,
     image: req.files[0] ? '/images/uploads/' + req.files[0].filename : '/images/default.jpg'
   }
   dbService.createArticle(newArticle)
@@ -66,7 +66,7 @@ router.put('/article/:id', upload.any(), (req, res, next) => {
     author: req.body.author,
     title: req.body.title,
     youtube: req.body.youtube,
-    body: req.body.body.replace('\r\n', '<br>'),
+    body: req.body.body,
     image: req.files[0] ? '/images/uploads/' + req.files[0].filename : req.body.orgImage
   }
   dbService.updateArticle(updatedArticle)

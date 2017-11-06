@@ -24,7 +24,7 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                             <div class="form-group">
                                 <label for="body">文章內容</label>
                                 <textarea class="form-control" rows="10"
-                                    id="body" name="body"
+                                    id="body1" name="body"
                                     v-model="newArticle.body">
                                 </textarea>
                             </div>
@@ -70,7 +70,7 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                             <div class="form-group">
                                 <label for="body">文章內容</label>
                                 <textarea class="form-control" rows="10"
-                                    id="body" name="body" 
+                                    id="body2" name="body" 
                                     v-model="newArticle.body">
                                 </textarea>
                             </div>
@@ -111,6 +111,7 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
         editArticle: function(article, mode) {
             console.log("trigger edit article")
             console.log("mode : ", mode)
+            CKEDITOR.instances.body2.setData(article.body)
             this.mode = mode
             this.newArticle = article
         },
@@ -125,9 +126,10 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
             let formData = new FormData()
             formData.append('author', this.newArticle.author)
             formData.append('title', this.newArticle.title)
-            formData.append('body', this.newArticle.body)
+            // formData.append('body', this.newArticle.body)
             formData.append('youtube', this.newArticle.youtube)
             if(this.mode === 'create') {
+                formData.append('body', CKEDITOR.instances.body1.getData())
                 formData.append('image', document.querySelector('#image1').files[0])
                 axios.post('/db/article', formData)
                     .then(res => {
@@ -136,6 +138,7 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
                     })
                     .catch(console.log)
             } else {
+                formData.append('body', CKEDITOR.instances.body2.getData())
                 formData.append('orgImage', this.newArticle.image)
                 formData.append('image', document.querySelector('#image2').files[0])
                 axios.put('/db/article/' + this.newArticle.id, formData)
@@ -150,6 +153,11 @@ var componentAdminArticleEdit = Vue.component('admin-article-edit', {
     created() {
         this.$parent.$on('edit-article', this.editArticle)
         this.$parent.$on('create-article', this.createArticle)
+    },
+    mounted() {
+        CKEDITOR.replace('body1')
+        CKEDITOR.replace('body2')
+        
     }
 })
 

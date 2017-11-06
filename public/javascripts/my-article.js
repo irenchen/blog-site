@@ -8,7 +8,7 @@ var componentMyArticle = Vue.component('my-article', {
                         <h2 class="text-center">{{ article.title }}</h2>
                         <h4 class="text-center">by {{ article.author }} at {{ article.created }}</h4>
                         <p class="hidden">index : {{ article.id }}</p>
-                        <p>{{ article.body }}</p>
+                        <p v-html="article.body"></p>
                         <div v-if="article.youtube" style="padding:30px;">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <iframe class="embed-responsive-item" 

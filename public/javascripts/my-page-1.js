@@ -14,7 +14,7 @@ var componentMyPage1 = Vue.component('my-page-1', {
                         <a href="#" class="article-anchor" v-on:click="showArticle(row*3 + index)">
                             <img v-bind:src="article.image" class="img-rounded img-responsive">
                             <p>{{ article.title }}</p>
-                            <p>{{ article.body.slice(0, 30) + '...' }}</p>
+                            <p v-html="article.body.slice(0, 30) + '...'"></p>
                         </a>
                     </div>                    
                 </div>
